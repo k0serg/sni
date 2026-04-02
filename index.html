@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>k0serg.ru — скоро запуск</title>
+  <meta name="description" content="k0serg.ru — сайт скоро заработает" />
+  <style>
+    :root {
+      --bg-1: #07111f;
+      --bg-2: #0d1f36;
+      --accent: #6ee7ff;
+      --accent-2: #8b5cf6;
+      --text: #f8fafc;
+      --muted: #bfd0e6;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(110, 231, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(139, 92, 246, 0.18), transparent 26%),
+        radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.08), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    body::before {
+      top: -120px;
+      left: -80px;
+      background: rgba(110, 231, 255, 0.22);
+    }
+
+    body::after {
+      right: -100px;
+      bottom: -120px;
+      background: rgba(139, 92, 246, 0.24);
+      animation-delay: -4s;
+    }
+
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      padding: 48px 36px;
+      border-radius: 28px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), transparent 40%, rgba(110,231,255,0.08));
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 16px rgba(110, 231, 255, 0.8);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 8vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 10%, #b7eeff 45%, #d7c8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin: 22px 0 0;
+      font-size: clamp(18px, 3vw, 24px);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .divider {
+      width: 92px;
+      height: 4px;
+      border-radius: 999px;
+      margin: 28px 0 24px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(110, 231, 255, 0.35);
+    }
+
+    .domain {
+      margin-top: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(3, 7, 18, 0.28);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 16px;
+      color: #e8f3ff;
+      backdrop-filter: blur(8px);
+    }
+
+    .domain strong {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: rgba(255,255,255,0.68);
+      font-size: 14px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.18); opacity: 0.8; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(18px) translateX(10px); }
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 34px 22px;
+        border-radius: 22px;
+      }
+
+      .badge {
+        font-size: 13px;
+      }
+
+      .subtitle {
+        font-size: 17px;
+      }
+
+      .domain {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="grid"></div>
+
+    <main class="card" aria-label="Скоро запуск сайта">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Идёт подготовка к запуску
+      </div>
+
+      <h1>
+        <span class="gradient-text">Сайт скоро</span><br />
+        заработает
+      </h1>
+
+      <div class="divider"></div>
+
+      <p class="subtitle">
+        Мы настраиваем и завершаем последние штрихи. Совсем скоро здесь появится полноценный сайт с актуальной информацией и сервисами.
+      </p>
+
+      <div class="domain">
+        <span>🌐</span>
+        <strong>k0serg.ru</strong>
+      </div>
+
+      <div class="footer">Спасибо за ожидание</div>
+    </main>
+  </div>
+</body>
+</html>
